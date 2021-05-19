@@ -26,7 +26,7 @@ COPY  kea-ddns.reverse /etc/kea-ddns-reverse/kea-ddns.reverse
 RUN chown _kea:_kea /etc/kea-ddns-reverse/kea-ddns.reverse && chmod 664 /etc/kea-ddns-reverse/kea-ddns.reverse
 
 ENV DDNS_PORT 53001
-ENV DNS_SERVER 127.0.0.1
+ENV DDNS_IP 0.0.0.0
 
 EXPOSE $DDNS_PORT/tcp
 
