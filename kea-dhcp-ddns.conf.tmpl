@@ -1,0 +1,32 @@
+// Docker file for the KEA DDNS Update Service
+// The official ISC KEA docs are at https://kea.readthedocs.io/).
+//
+{
+"DhcpDdns":
+{
+  "ip-address": "%%%DNS_SERVER%%%",
+  "port": %%%DDNS_PORT%%%,
+  "ncr-protocol": "UDP",
+  "ncr-format": "JSON",
+  "dns-server-timeout": 100,
+  "control-socket": {
+      "socket-type": "unix",
+      "socket-name": "/tmp/kea-dhcp-ddns-ctrl.sock"
+  },
+  <?include "/etc/kea-ddns-keys/tsig.keys"?>
+  <?include "/etc/kea-ddns-forward/kea-ddns.forward"?>
+  <?include "/etc/kea-ddns-reverse/kea-ddns.reverse"?>
+  "loggers": [
+    {
+        "name": "kea-dhcp-ddns",
+        "output_options": [
+            {
+                "output": "syslog"
+            }
+        ],
+        "severity": "INFO",
+        "debuglevel": 20
+    }
+  ]
+}
+}
