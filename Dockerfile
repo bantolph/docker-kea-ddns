@@ -27,6 +27,8 @@ RUN chown _kea:_kea /etc/kea-ddns-reverse/kea-ddns.reverse && chmod 664 /etc/kea
 
 ENV DDNS_PORT 53001
 ENV DDNS_IP 0.0.0.0
+# set the DEBUG flag to an integer to enable debugging
+ENV DEBUG NO
 
 EXPOSE $DDNS_PORT/tcp
 
